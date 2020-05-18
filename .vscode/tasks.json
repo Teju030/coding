@@ -1,7 +1,6 @@
 {
     "version": "2.0.0",
     "tasks": [
-        // C++ compiler settings
         {
             "type": "shell",
             "label": "g++.exe build active file",
@@ -20,12 +19,11 @@
             ],
             "group": "build"
         },
-        // Java compiler settings
         {
             "type": "shell",
             "label": "Compile Java file",
             "command": "java",
-            "windows":{
+            "windows": {
                 "command": "C:\\Program Files\\Java\\jdk-14.0.1\\bin\\javac.exe"
             },
             "args": [
@@ -33,13 +31,14 @@
                 "-d",
                 "${fileDirname}\\output"
             ],
-            "group": "build"
+            "group": "build",
+            "problemMatcher": []
         },
         {
             "type": "shell",
             "label": "Run Java file",
             "command": "java",
-            "windows":{
+            "windows": {
                 "command": "C:\\Program Files\\Java\\jdk-14.0.1\\bin\\java.exe"
             },
             "args": [
@@ -47,7 +46,8 @@
                 "${fileDirname}\\output;",
                 "${fileBasenameNoExtension}"
             ],
-            "group": "build"
+            "group": "build",
+            "problemMatcher": []
         }
     ]
 }

@@ -1,7 +1,6 @@
-// package ;
 import java.util.Arrays;
 import java.util.Collections;
-class Sorting
+public class Sorting
 {
     public static void main(String[] args) {
         int arr[] = { 5,2,7,1,8,9};

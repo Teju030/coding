@@ -1,0 +1,4 @@
+/* 
+Pattern matching algorithm
+Using Hash computation 
+*/

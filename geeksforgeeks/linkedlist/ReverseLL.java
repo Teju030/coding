@@ -1,4 +1,4 @@
-class LLReverse extends LinkedListUtil
+class ReverseLL extends LinkedListUtil
 {
     Node reverseLLrecursive(Node head)
     {
@@ -36,19 +36,23 @@ class LLReverse extends LinkedListUtil
         }
         return prev;
     }
-}
 
-public class ReverseLL
-{
     public static void main(String []args)
     {
-        LLReverse l = new LLReverse();
+        ReverseLL l = new ReverseLL();
         l.addAtEnd(10);
         l.addAtEnd(20);
         l.addAtEnd(30);
         l.addAtEnd(40);
         l.addAtEnd(50);
-        l.addAtEnd(70);
+        l.addAtEnd(80);
         l.display();
+
+        l.head = l.reverseLLiterative(l.head);
+        l.display();
+
+        l.head = l.reverseLLrecursive(l.head);
+        l.display();
+
     }
 }

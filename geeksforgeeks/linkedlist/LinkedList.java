@@ -1,7 +1,7 @@
 class Node
 {
-    public int data;
-    public Node next;
+    int data;
+    Node next;
 
     Node(int d)
     {

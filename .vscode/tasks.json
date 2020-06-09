@@ -22,30 +22,44 @@
         {
             "type": "shell",
             "label": "Compile Java file",
-            "command": "java",
             "windows": {
-                "command": "C:\\Program Files\\Java\\jdk-14.0.1\\bin\\javac.exe"
+                "command": "C:\\Program Files\\Java\\jdk-14.0.1\\bin\\javac.exe",
+                "args": [
+                    "${file}",
+                    "-d",
+                    "${fileDirname}\\output"
+                ]
             },
-            "args": [
-                "${file}",
-                "-d",
-                "${fileDirname}\\output"
-            ],
+            "linux":{
+                "command": "javac",
+                "args": [
+                    "${file}",
+                    "-d",
+                    "${fileDirname}/output"
+                ]
+            },
             "group": "build",
             "problemMatcher": []
         },
         {
             "type": "shell",
             "label": "Run Java file",
-            "command": "java",
             "windows": {
-                "command": "C:\\Program Files\\Java\\jdk-14.0.1\\bin\\java.exe"
+                "command": "C:\\Program Files\\Java\\jdk-14.0.1\\bin\\java.exe",
+                "args": [
+                    "-cp",
+                    "${fileDirname}\\output;",
+                    "${fileBasenameNoExtension}"
+                ]
             },
-            "args": [
-                "-cp",
-                "${fileDirname}\\output;",
-                "${fileBasenameNoExtension}"
-            ],
+            "linux":{
+                "command": "java",
+                "args": [
+                    "-cp",
+                    "${fileDirname}/output",
+                    "${fileBasenameNoExtension}"
+                ]
+            },
             "group": "build",
             "problemMatcher": []
         }

@@ -31,11 +31,13 @@
                 ]
             },
             "linux":{
-                "command": "javac",
+                "command": "javac", // javac ReverseLL.java -d output -cp output
                 "args": [
-                    "${file}",
+                    "${relativeFile}",
                     "-d",
-                    "${fileDirname}/output"
+                    "${relativeFileDirname}/output",
+                    "-cp",
+                    "${relativeFileDirname}/output"
                 ]
             },
             "group": "build",
@@ -53,10 +55,10 @@
                 ]
             },
             "linux":{
-                "command": "java",
+                "command": "java", //java -cp output ReverseLL
                 "args": [
                     "-cp",
-                    "${fileDirname}/output",
+                    "${relativeFileDirname}/output",
                     "${fileBasenameNoExtension}"
                 ]
             },

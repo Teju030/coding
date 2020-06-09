@@ -1,4 +1,3 @@
 *.exe
 *.class
-NOTES.md
-GeeksForGeeks.md
+docs/*

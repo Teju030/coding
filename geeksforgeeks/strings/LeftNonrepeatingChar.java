@@ -28,7 +28,6 @@ class LeftNonrepeatingChar
     public static void main(String []args)
     {
         String s = "geeksforgeeks";
-        LeftNonrepeatingChar ln = new LeftNonrepeatingChar();
-        System.out.println(ln.firstNonrepeatingChar(s));
+        System.out.println(LeftNonrepeatingChar.firstNonrepeatingChar(s));
     }
 }

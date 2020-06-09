@@ -46,8 +46,7 @@ class LeftRepeatingChar
     public static void main(String []args)
     {
         String s = "geeksforgeeks";
-        LeftRepeatingChar lc = new LeftRepeatingChar();
-        System.out.println("Naive solution output: "+ lc.naiveSolution(s));
-        System.out.println("Optimized solution output: "+ lc.optimumSolution(s));
+        System.out.println("Naive solution output: "+ LeftRepeatingChar.naiveSolution(s));
+        System.out.println("Optimized solution output: "+ LeftRepeatingChar.optimumSolution(s));
     }
 }

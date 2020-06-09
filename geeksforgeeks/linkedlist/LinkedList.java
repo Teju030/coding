@@ -7,6 +7,11 @@ class Node
     {
         data = d;
     }
+    Node(int d, Node n)
+    {
+        data = d;
+        next = n;
+    }
 }
 
 class LinkedListUtil

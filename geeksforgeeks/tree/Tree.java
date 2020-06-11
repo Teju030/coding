@@ -113,7 +113,5 @@ class Tree
         t.postorder(root);
         System.out.println("\n Level order traversal ");
         t.levelorder(root);
-
-        
     }
 }

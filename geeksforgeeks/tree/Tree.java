@@ -12,6 +12,29 @@ class Tnode
 
 class Tree
 {
+    int preindex = 0;
+    Tnode buildtree( int []in, int []pre, int inS, int inE)
+    {   
+        if(inS > inE) return null;
+        Tnode root = new Tnode(pre[preindex]);
+        preindex++;
+
+        int inindex = 0;
+        for(int i= inS; i<= inE; i++ )
+        {
+            if(in[i] == root.data)
+            {
+                inindex = i;
+                break;
+            }
+        }
+
+        root.left = buildtree(in, pre, inS, inindex-1);
+        root.right = buildtree(in, pre, inindex+1, inE);
+
+        return root;
+
+    }
     Tnode buildBinaryTreeHelper(int []in, int []pre, int inS, int inE, int preS, int preE)
     {
         if(inS > inE || preS > preE || inE >= in.length || preE >= pre.length)
@@ -113,5 +136,8 @@ class Tree
         t.postorder(root);
         System.out.println("\n Level order traversal ");
         t.levelorder(root);
+        System.out.println("\n New tree build function ");
+        Tnode root1 = t.buildtree(in, pre, 0, in.length-1);
+        t.preorder(root1);
     }
 }

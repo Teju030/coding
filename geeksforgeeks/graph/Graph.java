@@ -1,24 +1,34 @@
 import java.util.*;
 class Graph
 {
-    static void addEdge(ArrayList<ArrayList<Integer>> graph, int u, int v)
+    int V;
+    ArrayList<ArrayList <Integer>> adjList;
+    Graph(int V)
     {
-        graph.get(u).add(v);
-        graph.get(v).add(u);
+        this.V = V;
+        adjList = new ArrayList<ArrayList<Integer>>(V);
+        for(int i =0; i<V; i++)
+            adjList.add(new ArrayList<Integer>());
     }
-    static void printAdjlist(ArrayList<ArrayList<Integer>> list)
+    void addEdge(int u, int v)
     {
-        for(int i = 0; i<list.size(); i++)
+        adjList.get(u).add(v);
+        adjList.get(v).add(u);
+    }
+    void printAdjlist()
+    {
+        System.out.println("\nAdjacency list of given graph : ");
+        for(int i = 0; i<adjList.size(); i++)
 	    {
 	        System.out.print(i);
-	        for(int j : list.get(i))
+	        for(int j : adjList.get(i))
 	        {
 	            System.out.print("-> "+j);
 	        }
 	        System.out.println();
 	    }
     }
-    static void BFShelper(ArrayList<ArrayList<Integer>> adjList, int S, boolean[] visited)
+    void BFShelper( int S, boolean[] visited)
     {
         Queue<Integer> q = new LinkedList();
         q.add(S);
@@ -37,19 +47,18 @@ class Graph
             }
         }
     }
-    static void BFS(ArrayList<ArrayList<Integer>> adjList, int V)
+    void BFS()
     {
-        System.out.println("\n BFS traversal of Graph");
+        System.out.println("\nBFS traversal of Graph");
         boolean visited[] = new boolean[V];
         for(int i=0; i<V; i++)
         {
-            //System.out.println("\n vertex : " + i);
             if(!visited[i])
-                BFShelper(adjList, i, visited);
+                BFShelper( i, visited);
         }
     }
 
-    static void DFShelper(ArrayList<ArrayList<Integer>> adjList, int S, boolean[] visited)
+    void DFShelper(int S, boolean[] visited)
     {
         Stack<Integer> stk = new Stack();
         stk.push(S);
@@ -70,31 +79,29 @@ class Graph
 
     }
 
-    static void DFS(ArrayList<ArrayList<Integer>> adjList, int V)
+    void DFS()
     {
-        System.out.println("\n DFS traversal of graph");
+        System.out.println("\nDFS traversal of graph");
         boolean []visited = new boolean[V];
         for(int i =0; i< V; i++)
         {
             if(!visited[i])
             {
-                DFShelper(adjList, i, visited);
+                DFShelper( i, visited);
             }
         }
     }
+
     public static void main(String []args)
     {
-        int V = 7;
-        ArrayList<ArrayList <Integer>> adjList = new ArrayList<ArrayList<Integer>>(V);
-        for(int i =0; i<V; i++)
-            adjList.add(new ArrayList<Integer>());
-        addEdge(adjList, 0,4);
-        addEdge(adjList, 1,2);
-        addEdge(adjList, 1,3);
-        addEdge(adjList, 1,4);
-        addEdge(adjList, 3,4);
-        printAdjlist(adjList);
-        BFS(adjList, V);
-        DFS(adjList, V);
+        Graph g  = new Graph(5);
+        g.addEdge(0,4);
+        g.addEdge(1,2);
+        g.addEdge(1,3);
+        g.addEdge(1,4);
+        g.addEdge(3,4);
+        g.printAdjlist();
+        g.BFS();
+        g.DFS();
     }
 }

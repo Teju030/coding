@@ -1,0 +1,116 @@
+import java.util.*;
+import java.io.*;
+// using bit masking approach
+class CHEFCAKE
+{
+    public static void main(String []args)
+    {
+        //Scanner sc = new Scanner(System.in);
+        InputData sc = new InputData();
+        int t = sc.getInt();
+        int []pow = { 0 , 1, 11, 111, 1111, 11111, 111111, 1111111, 11111111, 111111111};
+        while(t-- > 0)
+        {
+            int n = sc.getInt();
+            int []l = new int[n];
+            int sum = 0;
+            l = sc.getArrayInt();
+            for(int i =0; i<n ; i++)
+            {   
+                sum+=l[i];
+            }
+            long total = sum*(n-1)*pow[n];
+            System.out.println(total);
+        }
+    }
+}
+
+class InputData
+{
+    static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+    static char[] getCharArray() {
+        char[] charArray;
+        try {
+            StringBuilder string = getInputString();
+            charArray = new char[string.length()];
+            for (int i = 0; i < string.length(); i++) {
+                charArray[i] = string.charAt(i);
+            }
+            return charArray;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        charArray = new char[0];
+        return charArray;
+    }
+
+    static int[] getArrayInt() {
+        String[] string;
+        int[] array;
+        try {
+            string = bufferedReader.readLine().split("\\s+");
+            array = new int[string.length];
+            for (int i = 0; i < string.length; i++) {
+                array[i] = Integer.parseInt(string[i]);
+            }
+            return array;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int[] arra = new int[2];
+        return arra;
+    }
+
+    static int getInt() {
+        try {
+            String string = bufferedReader.readLine();
+            return Integer.parseInt(string);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    static StringBuilder getInputString() {
+        try {
+            StringBuilder string = new StringBuilder();
+            string.append(bufferedReader.readLine());
+            return string;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new StringBuilder();
+    }
+
+    static long getLongInput() {
+        try {
+            String string = bufferedReader.readLine();
+            return Long.parseLong(string);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    static long[] getLongArrayInput() {
+        String[] string;
+        long[] array;
+        try {
+            string = bufferedReader.readLine().split("\\s+");
+            array = new long[string.length];
+            for (int i = 0; i < string.length; i++) {
+                array[i] = Long.parseLong(string[i]);
+            }
+            return array;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        long[] arra = new long[2];
+        return arra;
+    }
+}

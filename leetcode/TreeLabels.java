@@ -1,7 +1,7 @@
 import java.util.*;
 
 class Solution {
-    
+   
     ArrayList<Integer> []adjList;
     int []freq;
     public int[] solve(int u, int n, String l, boolean[] visited)

@@ -1,105 +1,76 @@
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-    class Pair
-    {
-        double x1, x2;
-        Pair()
-        {
-            x1 = 0.0;
-            x2 = 0.0;
-        }
-        Pair(double x1, double x2)
-        {
-            this.x1 = x1;
-            this.x2 = x2;
-        }
-        @Override
-        public String toString()
-        {
-            return "Pair : "+ x1+ " , "+ x2+"\n";
-        }
-    }
-    class Crop
-    {
-        double ferti;
-        double insect;
-        double price;
-        double total_price(double area)
-        {
-            return area*price;
-        }
-        @Override
-        public String toString()
-        {
-            return "Crop : "+ ferti+ " , "+ insect+" , "+ price+"\n";
-        }
-    }
-class CandidateCode {
+class CandidateCode
+{
 
-    //a + b = e and c + d = f
-    public  Pair solveSimultaneousEquations(double a, double b, double c, double d, double e, double f) {
-        double det = ((a) * (d) - (b) * (c));  //instead of 1/
-        double x = ((d) * (e) - (b) * (f)) / det;
-        double y = ((a) * (f) - (c) * (e)) / det;
-        return new Pair(x,y);
-    }
-    public String max_profit(double L,double F,double P, Crop wheat, Crop rice) {
-        
-        Pair intersect = solveSimultaneousEquations(wheat.ferti, rice.ferti, wheat.insect, rice.insect, F, P);
-       // System.out.println("intersect"+ intersect);
-       
-        Pair pointOnY = new Pair();
-        pointOnY.x2 = Math.min((F/rice.ferti), (P/rice.insect));
-        
-        Pair pointOnX = new Pair();
-        pointOnX.x1 = Math.min((F/wheat.ferti), (P/wheat.insect));
-        Pair res = new Pair();
-        
-        double max_pro = Double.MIN_VALUE;
+    String max_profit(double L, double F, double P, double F1, double P1, double F2, double P2, double S1, double S2)
+    {
+        // wheat
+        double wheat_profit = 0;
+        double total_wheat_area = 0;
 
-        for(Pair temp : new Pair[] {intersect, pointOnY, pointOnX})
+        double rice_profit = 0;
+        double total_rice_area = 0;
+
+        double total_profit = 0;
+        while(true)
         {
-            double wp = wheat.total_price(temp.x1);
-            double rp = rice.total_price(temp.x2);
-            if(wp > max_pro || rp > max_pro)
+            if((total_rice_area+total_rice_area)== L || P == 0 || L == 0 || F == 0)
+                break;
+            // get total profit 
+            wheat_profit = Math.min(F/F1, P/P1)*S1;
+            rice_profit = Math.min(F/F2, P/P2)*S2;
+            
+            if(wheat_profit > rice_profit)
             {
-                res = temp;
-                max_pro = Math.max(max_pro, Math.max(wp, rp));
+                // wheat prof is max
+                double tmp_wheat_area = Math.min(L, Math.min(F/F1, P/P1));
+                L = L - tmp_wheat_area;
+                F = F - F1*tmp_wheat_area;
+                P = P - P1*tmp_wheat_area;
+                total_wheat_area += tmp_wheat_area;
             }
+            else
+            {
+                // rice profit is max
+                double tmp_rice_area = Math.min(L, Math.min(F/F2, P/P2));
+                L = L - tmp_rice_area;
+                F = F - F2*tmp_rice_area;
+                P = P - P2*tmp_rice_area;
+                total_rice_area += tmp_rice_area;
+            }
+            // System.out.println(String.format("\nL: %.3f , F: %.3f, P: %.3f", L, F, P));
+            // System.out.println(String.format("\n[wheat]\narea: %.3f, profit: %.3f ", total_wheat_area, wheat_profit));
+            // System.out.println(String.format("\n[Rice]\narea: %.3f, profit: %.3f ", total_rice_area, rice_profit));
         }
+        total_profit = total_wheat_area*S1 + total_rice_area*S2;
         
-        DecimalFormat df = new DecimalFormat();
-        df.setMaximumFractionDigits(2);
-        df.setMinimumFractionDigits(2);
-        return df.format(max_pro) + " " + df.format(res.x1) + " " + df.format(res.x2);
-
+        return String.format("%.2f %.2f %.2f", total_profit, total_wheat_area, total_rice_area);
     }
-
-    // Driver method
-    public static void main(String args[]) {
-
+    public static void main(String []args)
+    {
         Scanner in = new Scanner(System.in);
         double L = in.nextInt();
 
         double F = in.nextInt();
 
         double P = in.nextInt();
-        Crop wheat = new Crop();
-        wheat.ferti = in.nextInt();
-        wheat.insect = in.nextInt();
         
-        Crop rice = new Crop();
-        rice.ferti = in.nextInt();
-        rice.insect = in.nextInt();
+        double F1 = in.nextInt();
+        double P1 = in.nextInt();
+        
+        
+        double F2 = in.nextInt();
+        double P2 = in.nextInt();
 
-        wheat.price = in.nextInt();
+        double S1 = in.nextInt();
 
-        rice.price = in.nextInt();
-       // System.out.println("wheat"+ wheat);
-       // System.out.println("rice"+ rice);
+        double S2 = in.nextInt();
         CandidateCode c = new CandidateCode();
 
-        System.out.print(c.max_profit(L, F, P, wheat, rice));
+        System.out.print(c.max_profit(L, F, P, F1, P1, F2, P2, S1, S2));
     }
+
+    
 }

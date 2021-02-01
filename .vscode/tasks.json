@@ -40,6 +40,16 @@
                     "${relativeFileDirname}/output"
                 ]
             },
+            "osx":{  // For Macbook pro M1
+                "command": "javac", // javac ReverseLL.java -d output -cp output
+                "args": [
+                    "${relativeFile}",
+                    "-d",
+                    "${relativeFileDirname}/output",
+                    "-cp",
+                    "${relativeFileDirname}/output"
+                ]
+            },
             "group": "build",
             "problemMatcher": []
         },
@@ -55,6 +65,14 @@
                 ]
             },
             "linux":{
+                "command": "java", //java -cp output ReverseLL
+                "args": [
+                    "-cp",
+                    "${relativeFileDirname}/output",
+                    "${fileBasenameNoExtension}"
+                ]
+            },
+            "osx":{
                 "command": "java", //java -cp output ReverseLL
                 "args": [
                     "-cp",

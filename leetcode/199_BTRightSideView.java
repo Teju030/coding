@@ -13,6 +13,26 @@
  *     }
  * }
  */
+
+// recursive solution 
+class Solution {
+    List<Integer> rightmost = new LinkedList<>();
+    public List<Integer> rightSideView(TreeNode root) {
+        if(root == null ) return rightmost;
+        util(root, 0);
+        return rightmost;
+    }
+    public void util(TreeNode root, int level){
+        if(level == rightmost.size()){
+            rightmost.add(root.val);
+        }
+        if(root.right != null) 
+            util(root.right, level+1);
+        if(root.left != null)
+            util(root.left, level+1);
+    }
+}
+//iterative solution 
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
         

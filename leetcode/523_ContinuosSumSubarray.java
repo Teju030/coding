@@ -11,7 +11,6 @@ class Solution {
         int rem = 0;
         map.put(0,-1);
         for(int i = 0; i < n ; i++){
-           
             rem += nums[i];
             if(k != 0 ) rem %= k;
             if( map.get(rem) != null)

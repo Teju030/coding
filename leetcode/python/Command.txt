@@ -1,0 +1,19 @@
+export PATH=${JAVA_HOME}/bin:${PATH}
+export HADOOP_CLASSPATH=${JAVA_HOME}/lib/tools.jar
+
+// Create JAR 
+hadoop com.sun.tools.javac.Main InvertedIndexBigrams.java
+jar cf invertedindexbigrams.jar InvertedIndexBigrams*.class
+
+hadoop fs -copyFromLocal ./invertedindexbigrams.jar
+hadoop fs -cp ./invertedindexbigrams.jar gs://dataproc-staging-us-west1-796135570997-aa88ue61/jar
+
+hadoop fs -getmerge gs://dataproc-staging-us-west1-796135570997-aa88ue61/devdataoutput ./output.txt
+
+hadoop fs -cp ./output.txt gs://dataproc-staging-us-west1-796135570997-aa88ue61/output.txt
+
+hadoop fs -getmerge gs://dataproc-staging-us-west1-796135570997-aa88ue61/devdatabigramsoutput ./output_bigrams.txt
+hadoop fs -copyFromLocal ./output_bigrams.txt
+hadoop fs -cp ./output_bigrams.txt gs://dataproc-staging-us-west1-796135570997-aa88ue61/output_bigrams.txt
+
+sort -o output_bigrams_sorted.txt output.txt

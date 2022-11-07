@@ -1,3 +1,11 @@
+'''
+Time Complexity : O(N * 3^L)
+Max 3 branches and max level is L 
+
+Space Complexity: O(L)
+Where, L = len(word)
+M = Number of cells
+'''
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         m = len(board)

@@ -1,1 +1,14 @@
 https://leetcode.com/problems/the-skyline-problem/solutions/1861619/python-using-custom-comparator-and-priority-queue-heap/
+
+In Python, library heapq provides a method nlargest, which combines the last two steps under the hood and has the same O(Nlog⁡k)
+O(N log k) time complexity.
+
+The second step is to build a heap of size k using N elements. To add the first k elements takes a linear time O(k)\mathcal{O}(k)O(k) in the average case, and O(log⁡1+log⁡2+...+log⁡k)=O(logk!)=O(klog⁡k)
+O(log 1 + log 2 + ... + log k) = O(log k!) = O(k \log k)O(log1+log2+...+logk)=O(logk!)=O(klogk) in the worst case. It's equivalent to heapify implementation in Python. After the first k elements we start to push and pop at each step, N - k steps in total. The time complexity of heap push/pop is O(log⁡k)\mathcal{O}(\log k)O(logk) and we do it N - k times that means O((N−k)log⁡k)\mathcal{O}((N - k)\log k)O((N−k)logk) time complexity. Adding both parts up, we get O(Nlog⁡k)\mathcal{O}(N \log k)O(Nlogk) time complexity for the second step.
+
+
+### HEAP 
+> heapq.nlargest(<#ofElements>, <list_of_numbers>, key=<comparator_function>)
+
+### Counter 
+> Counter is a sub-class that is used to count hashable objects. It implicitly creates a hash table of an iterable when invoked.
